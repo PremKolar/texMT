@@ -9,3 +9,5 @@
 *.backup
 *.ps
 *~
+*.log
+*.tdo
