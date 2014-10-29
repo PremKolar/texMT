@@ -155,13 +155,15 @@ h^2 \pi^{2/3}
 \end{align}
 
 \begin{align}
-&= 
+	\lambda(r) &= \frac{V}{A^{1.5}}\\
+		&= 
+h^2 \pi^{2/3}
 \frac
 {
-\exp \left( 2 r^2  \right)
+\exp \left(\gamma \left(  2 r^2 \right) \right)
 }
 {
-r^5 
+\gamma^2 r^5 
 }
 \end{align}
 % 
