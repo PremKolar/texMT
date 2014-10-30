@@ -71,16 +71,16 @@ $\mathrm{L_{R}} = c/f $
 
 \begin{definition}[Steering Level $z_S$]\label{def:steer}
 The critical depth where the real part of the Doppler shifted phase
-speed $c_S(z_S)=\real{c(z)}-u(z)=0$ vanishes. \Ie the depth where Doppler shift
+speed $c_S(z_S)=\real{c(z)}-u(z)=0$ vanishes. \Ie the depth where the Doppler shift
 creates a standing wave, causing the disturbances to grow in place instead of
-spreading space, analogous to a \textit{supersonic bang}.
+spreading in space, analogous to a \textit{supersonic bang}.
  \end{definition}
 %###################################%
 
 
 
 \begin{definition}[Rhines Scale $\mathrm{L_{\beta}} \unit{m}$ ]\label{def:Lb}
-scale at which earth's sphericity becomes important.\\
+Scale at which earth's sphericity becomes important.\\
 $\mathrm{L_{\beta}}^2 = \frac{U}{\beta} $
  \end{definition}
 %###################################%
@@ -176,12 +176,19 @@ indicates deformation.
 %###################################%
 
 \begin{definition}[Isoperimetric Quotient
-\IQ $\unit{\;}$]\label{def:IQ}
+$\IQ \unit{\;}$]\label{def:IQ}
 $\IQ=A/A_{c}=\frac{A}{\pi r^2_{c}}=\frac{4 \pi A}{U^2} \le 1$.\\
 The ratio of a ring's area to the area of a circle with equal circumference.
  \end{definition}
 %###################################%
 
+\begin{definition}[Gaussian radius
+$$:Twice the Gaussian standard-deviation \\
+$\rG \unit{m}$]\label{def:rG}
+$\IQ=A/A_{c}=\frac{A}{\pi r^2_{c}}=\frac{4 \pi A}{U^2} \le 1$.\\
+Twice the Gaussian standard-deviation.
+ \end{definition}
+%###################################%
 
 
 \end{multicols}
