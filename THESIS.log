@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2014.9.12)  21 SEP 2014 21:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2014.9.12)  29 OCT 2014 16:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1677,7 +1677,11 @@ Package: relsize 2013/03/29 ver 4.1
 \c@derivation=\count307
 \c@eddy=\count308
 \c@turbu=\count309
-) (./SUBS/info.tex)) (./THESIS.aux)
+) (./SUBS/info.tex)) (./THESIS.aux
+
+LaTeX Warning: Label `eq:vort1' multiply defined.
+
+)
 \openout1 = `THESIS.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -1850,7 +1854,28 @@ l.1 \begin{abstract}
 ]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 2.
- [3]) (./THESIS.toc)
+ [3]) (./THESIS.toc
+
+Package natbib Warning: Citation `Rhines2006' on page iv undefined on input lin
+e 13.
+
+
+Package natbib Warning: Citation `Cushman-Roisin1990' on page iv undefined on i
+nput line 14.
+
+
+Package natbib Warning: Citation `Killworth1997a' on page iv undefined on input
+ line 16.
+
+
+Package natbib Warning: Citation `Chelton2007' on page iv undefined on input li
+ne 16.
+
+
+Package natbib Warning: Citation `Chelton2011' on page iv undefined on input li
+ne 16.
+
+)
 \tf@toc=\write6
 \openout6 = `THESIS.toc'.
 
@@ -2002,19 +2027,11 @@ Package mdframed Info: mdframed works in twoside mode on input line 179.
 
 Chapter 1.
 (./SUBS/INTRODUCTION.tex (./SUBS/theory.tex
-<./FIGS/GS.pdf, id=116, 1606.0pt x 1204.5pt>
+<./FIGS/GS.pdf, id=307, 1606.0pt x 1204.5pt>
 File: ./FIGS/GS.pdf Graphic file (type pdf)
  <use ./FIGS/GS.pdf>
 Package pdftex.def Info: ./FIGS/GS.pdf used on input line 7.
 (pdftex.def)             Requested size: 227.62206pt x 170.70569pt.
-
-
-LaTeX Warning: Reference `chap:turbu_categories' on page 1 undefined on input l
-ine 19.
-
-
-LaTeX Warning: Reference `chap:eddy_cat' on page 1 undefined on input line 21.
-
 
 Underfull \hbox (badness 1107) in paragraph at lines 14--27
 \OT1/cmr/m/n/10 of meso-scale tur-bu-lence and parametriza-tions
@@ -2038,9 +2055,6 @@ e 32.
 
  <./FIGS/GS.pdf>]
 
-LaTeX Warning: Reference `der:okubo' on page 2 undefined on input line 47.
-
-
 Package natbib Warning: Citation `Okubo1970' on page 2 undefined on input line 
 60.
 
@@ -2052,11 +2066,7 @@ e 64.
 Package natbib Warning: Citation `Chelton2011' on page 2 undefined on input lin
 e 74.
 
-(./SUBS/speeds.tex
-
-LaTeX Warning: Reference `eq:vort7' on page 2 undefined on input line 8.
-
-[2] [3]) (./SUBS/lengthscale.tex
+(./SUBS/speeds.tex [2] [3]) (./SUBS/lengthscale.tex
 
 Package natbib Warning: Citation `Chelton2011' on page 4 undefined on input lin
 e 5.
@@ -2065,7 +2075,7 @@ e 5.
 Package natbib Warning: Citation `Chelton2011' on page 4 undefined on input lin
 e 7.
 
-<./FIGS/SSHB.pdf, id=166, 4576.06636pt x 3666.9095pt>
+<./FIGS/SSHB.pdf, id=359, 4576.06636pt x 3666.9095pt>
 File: ./FIGS/SSHB.pdf Graphic file (type pdf)
  <use ./FIGS/SSHB.pdf>
 Package pdftex.def Info: ./FIGS/SSHB.pdf used on input line 15.
@@ -2172,19 +2182,6 @@ put line 12.
 
 [4 <./FIGS/SSHB.pdf>]
 
-LaTeX Warning: Reference `eq:cush1' on page 5 undefined on input line 40.
-
-
-LaTeX Warning: Reference `speed_planlift' on page 5 undefined on input line 59.
-
-
-
-LaTeX Warning: Reference `subsec:speeds' on page 5 undefined on input line 59.
-
-
-LaTeX Warning: Reference `speed_beta' on page 5 undefined on input line 59.
-
-
 Package natbib Warning: Citation `VanLeeuwen2007' on page 5 undefined on input 
 line 60.
 
@@ -2273,13 +2270,6 @@ Package natbib Warning: Citation `Chelton2007' on page 5 undefined on input lin
 e 80.
 
 
-LaTeX Warning: Reference `subsec:detectmethods' on page 5 undefined on input li
-ne 81.
-
-
-LaTeX Warning: Reference `der:okubo' on page 5 undefined on input line 81.
-
-
 Package natbib Warning: Citation `Chelton2011' on page 5 undefined on input lin
 e 83.
 
@@ -2291,7 +2281,7 @@ Package natbib Warning: Citation `rhines1979theoretical' on page 5 undefined on
 LaTeX Warning: Reference `sec:satvsmod' on page 5 undefined on input line 91.
 
 ) [5] (./SUBS/methods.tex
-<./FIGS/orbits3.pdf, id=222, 1214.92897pt x 1344.11156pt>
+<./FIGS/orbits3.pdf, id=415, 1214.92897pt x 1344.11156pt>
 File: ./FIGS/orbits3.pdf Graphic file (type pdf)
 
 <use ./FIGS/orbits3.pdf>
@@ -2302,7 +2292,7 @@ Package pdftex.def Info: ./FIGS/orbits3.pdf used on input line 9.
 Package wrapfig Warning: Collision between wrapping environments on input line 
 26.
 
-<./FIGS/scales.pdf, id=223, 1847.37173pt x 1377.75728pt>
+<./FIGS/scales.pdf, id=416, 1847.37173pt x 1377.75728pt>
 File: ./FIGS/scales.pdf Graphic file (type pdf)
 
 <use ./FIGS/scales.pdf>
@@ -2317,7 +2307,7 @@ Package natbib Warning: Citation `olbers2012ocean' on page 6 undefined on input
 Package natbib Warning: Citation `olbers2012ocean' on page 6 undefined on input
  line 32.
 
-<./FIGS/tracks.pdf, id=224, 1130.14224pt x 248.10793pt>
+<./FIGS/tracks.pdf, id=417, 1130.14224pt x 248.10793pt>
 File: ./FIGS/tracks.pdf Graphic file (type pdf)
 
 <use ./FIGS/tracks.pdf>
@@ -2361,7 +2351,7 @@ Package natbib Warning: Citation `Chelton2011' on page 6 undefined on input lin
 e 74.
 
 [6 <./FIGS/orbits3.pdf> <./FIGS/tracks.pdf>]
-<./FIGS/sats.pdf, id=250, 731.73375pt x 135.50626pt>
+<./FIGS/sats.pdf, id=442, 731.73375pt x 135.50626pt>
 File: ./FIGS/sats.pdf Graphic file (type pdf)
  <use ./FIGS/sats.pdf>
 Package pdftex.def Info: ./FIGS/sats.pdf used on input line 78.
@@ -2371,7 +2361,7 @@ Package pdftex.def Info: ./FIGS/sats.pdf used on input line 78.
 Package wrapfig Warning: Collision between wrapping environments on input line 
 89.
 
-<./FIGS/latovermu.pdf, id=251, 3423.43983pt x 2749.67265pt>
+<./FIGS/latovermu.pdf, id=443, 3423.43983pt x 2749.67265pt>
 File: ./FIGS/latovermu.pdf Graphic file (type pdf)
 
 <use ./FIGS/latovermu.pdf>
@@ -2382,15 +2372,7 @@ Package pdftex.def Info: ./FIGS/latovermu.pdf used on input line 92.
 Package wrapfig Warning: Stationary wrapfigure forced to float on input line 98
 .
 
-[7 <./FIGS/sats.pdf> <./FIGS/scales.pdf>]
-
-LaTeX Warning: Reference `fig:phiovermu' on page 8 undefined on input line 110.
-
-
-
-LaTeX Warning: Reference `sec:goals' on page 8 undefined on input line 116.
-
-) (./SUBS/goals.tex
+[7 <./FIGS/sats.pdf> <./FIGS/scales.pdf>]) (./SUBS/goals.tex
 
 Package natbib Warning: Citation `Chelton2011' on page 8 undefined on input lin
 e 14.
@@ -2453,16 +2435,7 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 Package natbib Warning: Citation `Chelton2011' on page 12 undefined on input li
 ne 93.
 
-[12]
-
-LaTeX Warning: Reference `filter:shape' on page 13 undefined on input line 150.
-
-
-
-LaTeX Warning: Reference `filter:dynscale' on page 13 undefined on input line 1
-52.
-
-[13] <./FIGS/isoper.pdf, id=418, 312.16624pt x 247.92625pt>
+[12] [13] <./FIGS/isoper.pdf, id=603, 312.16624pt x 247.92625pt>
 File: ./FIGS/isoper.pdf Graphic file (type pdf)
 
 <use ./FIGS/isoper.pdf>
@@ -2490,7 +2463,7 @@ ne 175.
 Package natbib Warning: Citation `Chelton2011' on page 14 undefined on input li
 ne 183.
 
-<./FIGS/profiles.pdf, id=420, 312.16624pt x 328.22626pt>
+<./FIGS/profiles.pdf, id=605, 312.16624pt x 328.22626pt>
 File: ./FIGS/profiles.pdf Graphic file (type pdf)
 
 <use ./FIGS/profiles.pdf>
@@ -2503,16 +2476,10 @@ nd V.
  []
 
 
-LaTeX Warning: Reference `filter:area' on page 14 undefined on input line 201.
-
-
 Package natbib Warning: Citation `Chelton2011' on page 14 undefined on input li
 ne 224.
 
 [14 <./FIGS/isoper.pdf> <./FIGS/profiles.pdf>]
-
-LaTeX Warning: Reference `filter:amp' on page 15 undefined on input line 237.
-
 
 Package natbib Warning: Citation `Chelton2007' on page 15 undefined on input li
 ne 252.
@@ -2542,15 +2509,7 @@ Overfull \hbox (100.73042pt too wide) in paragraph at lines 339--339
 [][][][][][][][][][][][][][][][][][][][][]  
  []
 
-[16]
-
-LaTeX Warning: Reference `codeEx:map_params' on page 17 undefined on input line
- 389.
-
-
-LaTeX Warning: Reference `codeEx:data' on page 17 undefined on input line 412.
-
-) (./SUBS/codeFlowChart.tex
+[16]) (./SUBS/codeFlowChart.tex
 Overfull \hbox (4.1945pt too wide) in paragraph at lines 31--31
 [][][][]\OT1/cmr/m/n/10 formated 
  []
@@ -2577,29 +2536,7 @@ Chapter 4.
 
 ]
 Appendix A.
-(./SUBS/turbu_categories.tex
-
-LaTeX Warning: Reference `eq:NS2' on page 23 undefined on input line 4.
-
-
-LaTeX Warning: Reference `der:vort' on page 23 undefined on input line 5.
-
-
-LaTeX Warning: Reference `der:Ek' on page 23 undefined on input line 6.
-
-
-LaTeX Warning: Reference `eq:vort2' on page 23 undefined on input line 7.
-
-
-LaTeX Warning: Reference `der:enstro' on page 23 undefined on input line 8.
-
-
-LaTeX Warning: Reference `eq:Ekin1' on page 23 undefined on input line 9.
-
-
-LaTeX Warning: Reference `der:Em' on page 23 undefined on input line 9.
-
-(./SUBS/theory1.tex
+(./SUBS/turbu_categories.tex (./SUBS/theory1.tex
 
 LaTeX Warning: Hyper reference `def:B' on page 23 undefined on input line 55.
 
@@ -2630,9 +2567,6 @@ LaTeX Warning: Hyper reference `def:enstro' on page 23 undefined on input line
 Package mdframed Info: mdframed works in twoside mode on input line 17.
 
 
-LaTeX Warning: Reference `eq:EQS1' on page 23 undefined on input line 19.
-
-
 LaTeX Warning: Hyper reference `def:Ek' on page 23 undefined on input line 19.
 
 (./SUBS/theory2.tex
@@ -2650,14 +2584,7 @@ LaTeX Warning: Hyper reference `def:Em' on page 23 undefined on input line 44.
 LaTeX Warning: Hyper reference `def:enstro' on page 23 undefined on input line 
 44.
 
-)
-
-LaTeX Warning: Reference `eq:Emech2' on page 23 undefined on input line 23.
-
-
-LaTeX Warning: Reference `eq:enst2' on page 23 undefined on input line 23.
-
-(./SUBS/theory3.tex
+) (./SUBS/theory3.tex
 
 LaTeX Warning: Hyper reference `def:Em' on page 23 undefined on input line 41.
 
@@ -2672,21 +2599,9 @@ LaTeX Warning: Hyper reference `def:Em' on page 23 undefined on input line 41.
 LaTeX Warning: Hyper reference `def:enstro' on page 23 undefined on input line 
 41.
 
-)
-
-LaTeX Warning: Reference `mdf@pagelabel-29' on page 23 undefined on input line 
-35.
-
-[23]
-
-LaTeX Warning: Reference `mdf@pagelabel-30' on page 24 undefined on input line 
-35.
-
+) [23]
 Package mdframed Info: mdframed works in twoside mode on input line 38.
-
-LaTeX Warning: Reference `turb:tank' on page 24 undefined on input line 39.
-
-(./SUBS/theory4.tex
+ (./SUBS/theory4.tex
 
 LaTeX Warning: Hyper reference `def:Em' on page 24 undefined on input line 39.
 
@@ -2702,26 +2617,9 @@ LaTeX Warning: Hyper reference `def:enstro' on page 24 undefined on input line
 39.
 
 )
-
-LaTeX Warning: Reference `eq:NS4' on page 24 undefined on input line 48.
-
-
-LaTeX Warning: Reference `eq:vort4' on page 24 undefined on input line 49.
-
-
-LaTeX Warning: Reference `eq:Emech4' on page 24 undefined on input line 50.
-
-
-LaTeX Warning: Reference `eq:enst4' on page 24 undefined on input line 50.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 39--54
 
  []
-
-
-LaTeX Warning: Reference `mdf@pagelabel-31' on page 24 undefined on input line 
-54.
 
 Package mdframed Info: mdframed works in twoside mode on input line 57.
 (./SUBS/theory5.tex
@@ -2761,16 +2659,7 @@ LaTeX Warning: Hyper reference `def:enstro' on page 24 undefined on input line
 LaTeX Warning: Hyper reference `def:enstro' on page 24 undefined on input line 
 72.
 
-
-LaTeX Warning: Reference `mdf@pagelabel-32' on page 24 undefined on input line 
-78.
-
-[24]
-
-LaTeX Warning: Reference `mdf@pagelabel-33' on page 25 undefined on input line 
-78.
-
-<./FIGS/PSI.pdf, id=585, 1614.41142pt x 419.963pt>
+[24] <./FIGS/PSI.pdf, id=782, 1614.41142pt x 419.963pt>
 File: ./FIGS/PSI.pdf Graphic file (type pdf)
  <use ./FIGS/PSI.pdf>
 Package pdftex.def Info: ./FIGS/PSI.pdf used on input line 82.
@@ -2785,55 +2674,22 @@ Package natbib Warning: Citation `Seibold2008a' on page 25 undefined on input l
 ine 84.
 
 Package mdframed Info: mdframed works in twoside mode on input line 88.
-(./SUBS/theory6.tex)
-
-LaTeX Warning: Reference `mdf@pagelabel-34' on page 25 undefined on input line 
-98.
-
-) [25 <./FIGS/PSI.pdf>] [26
+(./SUBS/theory6.tex)) [25 <./FIGS/PSI.pdf>] [26
 
 ]
 Appendix B.
-(./SUBS/eddy_categories.tex
-
-LaTeX Warning: Reference `eq:theory6' on page 27 undefined on input line 2.
-
-(./SUBS/theory7.tex)
+(./SUBS/eddy_categories.tex (./SUBS/theory7.tex)
 Package mdframed Info: mdframed works in twoside mode on input line 16.
 
 
 Package natbib Warning: Citation `Cushman-Roisin1990' on page 27 undefined on i
 nput line 30.
 
-
-LaTeX Warning: Reference `mdf@pagelabel-35' on page 27 undefined on input line 
-33.
-
 Package mdframed Info: mdframed works in twoside mode on input line 37.
-
-LaTeX Warning: Reference `mdf@pagelabel-36' on page 27 undefined on input line 
-51.
-
 Package mdframed Info: mdframed works in twoside mode on input line 55.
-
-LaTeX Warning: Reference `mdf@pagelabel-37' on page 27 undefined on input line 
-67.
-
 Package mdframed Info: mdframed works in twoside mode on input line 72.
-
-LaTeX Warning: Reference `mdf@pagelabel-38' on page 27 undefined on input line 
-91.
-
 [27]
-
-LaTeX Warning: Reference `mdf@pagelabel-39' on page 28 undefined on input line 
-91.
-
 Package mdframed Info: mdframed works in twoside mode on input line 96.
-
-LaTeX Warning: Reference `mdf@pagelabel-40' on page 28 undefined on input line 
-108.
-
 ) [28]
 Appendix C.
 (./SUBS/history2.tex
@@ -2852,10 +2708,6 @@ put line 4.
 
 Package natbib Warning: Citation `rhines1982basic' on page 29 undefined on inpu
 t line 8.
-
-
-LaTeX Warning: Reference `eq:fick_tracer' on page 29 undefined on input line 32
-.
 
 
 Package natbib Warning: Citation `Rhines2006' on page 29 undefined on input lin
@@ -2982,10 +2834,6 @@ Package natbib Warning: Citation `Tulloch2009' on page 31 undefined on input li
 ne 154.
 
 
-LaTeX Warning: Reference `sec:hist_killworth' on page 31 undefined on input lin
-e 155.
-
-
 Package natbib Warning: Citation `Tulloch2009' on page 31 undefined on input li
 ne 157.
 
@@ -3034,10 +2882,6 @@ Package natbib Warning: Citation `Vollmer2013a' on page 31 undefined on input l
 ine 184.
 
 
-LaTeX Warning: Reference `sec:hist_eden07' on page 31 undefined on input line 1
-93.
-
-
 Package natbib Warning: Citation `Cushman-Roisin1990' on page 31 undefined on i
 nput line 202.
 
@@ -3047,18 +2891,6 @@ nput line 202.
 Appendix D.
 (./SUBS/Derivations.tex
 Package mdframed Info: mdframed works in twoside mode on input line 4.
-
-
-LaTeX Warning: Reference `eq:NS2' on page 33 undefined on input line 16.
-
-
-LaTeX Warning: Reference `eq:NS2' on page 33 undefined on input line 43.
-
-
-LaTeX Warning: Reference `eq:konti1' on page 33 undefined on input line 43.
-
-
-LaTeX Warning: Reference `eq:vort1' on page 33 undefined on input line 79.
 
 
 LaTeX Warning: Hyper reference `def:B' on page 33 undefined on input line 115.
@@ -3105,19 +2937,9 @@ LaTeX Warning: Hyper reference `def:B' on page 33 undefined on input line 195.
 
 LaTeX Warning: Hyper reference `def:B' on page 33 undefined on input line 195.
 
-
-LaTeX Warning: Reference `mdf@pagelabel-41' on page 33 undefined on input line 
-208.
-
 [33]
-
-LaTeX Warning: Reference `mdf@pagelabel-42' on page 34 undefined on input line 
-208.
-
 Package mdframed Info: mdframed works in twoside mode on input line 214.
 
-LaTeX Warning: Reference `eq:NS2' on page 34 undefined on input line 215.
-
 
 LaTeX Warning: Hyper reference `def:Ek' on page 34 undefined on input line 278.
 
@@ -3133,19 +2955,8 @@ LaTeX Warning: Hyper reference `def:Ek' on page 34 undefined on input line 278.
 
 LaTeX Warning: Hyper reference `def:Ek' on page 34 undefined on input line 278.
 
-
-
-LaTeX Warning: Reference `mdf@pagelabel-43' on page 34 undefined on input line 
-279.
 
 Package mdframed Info: mdframed works in twoside mode on input line 284.
-
-LaTeX Warning: Reference `eq:Ekin1' on page 34 undefined on input line 286.
-
-
-LaTeX Warning: Reference `mdf@pagelabel-44' on page 34 undefined on input line 
-332.
-
 Package mdframed Info: mdframed works in twoside mode on input line 338.
 
 LaTeX Warning: Hyper reference `def:enstro' on page 34 undefined on input line 
@@ -3155,89 +2966,21 @@ LaTeX Warning: Hyper reference `def:enstro' on page 34 undefined on input line
 LaTeX Warning: Hyper reference `def:enstro' on page 34 undefined on input line 
 378.
 
-
-LaTeX Warning: Reference `mdf@pagelabel-45' on page 34 undefined on input line 
-389.
-
 [34]
-
-LaTeX Warning: Reference `mdf@pagelabel-46' on page 35 undefined on input line 
-389.
-
 Package mdframed Info: mdframed works in twoside mode on input line 394.
-
-LaTeX Warning: Reference `mdf@pagelabel-47' on page 35 undefined on input line 
-432.
-
 Package mdframed Info: mdframed works in twoside mode on input line 435.
-
-LaTeX Warning: Reference `mdf@pagelabel-48' on page 35 undefined on input line 
-507.
-
 Package mdframed Info: mdframed works in twoside mode on input line 512.
-
-LaTeX Warning: Reference `mdf@pagelabel-49' on page 35 undefined on input line 
-584.
-
-[35]
-
-LaTeX Warning: Reference `mdf@pagelabel-50' on page 36 undefined on input line 
-584.
-
+ [35]
 Package mdframed Info: mdframed works in twoside mode on input line 588.
-
-LaTeX Warning: Reference `mdf@pagelabel-51' on page 36 undefined on input line 
-605.
-
 Package mdframed Info: mdframed works in twoside mode on input line 608.
-
-LaTeX Warning: Reference `eq:inhomo1' on page 36 undefined on input line 634.
-
-
-LaTeX Warning: Reference `eq:inhomoDECOMP' on page 36 undefined on input line 6
-63.
-
-
-LaTeX Warning: Reference `eq:inhomoNStemp1' on page 36 undefined on input line 
-780.
-
-
-LaTeX Warning: Reference `mdf@pagelabel-52' on page 36 undefined on input line 
-823.
-
-[36]
-
-LaTeX Warning: Reference `mdf@pagelabel-53' on page 37 undefined on input line 
-823.
-
+ [36]
 Package mdframed Info: mdframed works in twoside mode on input line 827.
-
-LaTeX Warning: Reference `eq:decompfin' on page 37 undefined on input line 829.
-
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 924--928
 
  []
 
-
-LaTeX Warning: Reference `eq:inhomoNStemp1' on page 37 undefined on input line 
-967.
-
-
-LaTeX Warning: Reference `eq:TurbKinFin2' on page 37 undefined on input line 96
-8.
-
-
-LaTeX Warning: Reference `mdf@pagelabel-54' on page 37 undefined on input line 
-983.
-
-[37]
-
-LaTeX Warning: Reference `mdf@pagelabel-55' on page 38 undefined on input line 
-983.
-
-) [38]
+[37]) [38]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -3272,20 +3015,20 @@ LaTeX Warning: Reference `mdf@pagelabel-55' on page 38 undefined on input line
 
 
 Appendix E.
-(./SUBS/preview.tex <./FIGS/ACC.pdf, id=821, 708.6475pt x 648.4225pt>
+(./SUBS/preview.tex <./FIGS/ACC.pdf, id=1025, 708.6475pt x 648.4225pt>
 File: ./FIGS/ACC.pdf Graphic file (type pdf)
 
 <use ./FIGS/ACC.pdf>
 Package pdftex.def Info: ./FIGS/ACC.pdf used on input line 8.
 (pdftex.def)             Requested size: 386.95897pt x 354.0808pt.
- <./FIGS/age_tracks.pdf, id=822, 926.935pt x 1159.2108pt>
+ <./FIGS/age_tracks.pdf, id=1026, 926.935pt x 1159.2108pt>
 File: ./FIGS/age_tracks.pdf Graphic file (type pdf)
 
 <use ./FIGS/age_tracks.pdf>
 Package pdftex.def Info: ./FIGS/age_tracks.pdf used on input line 16.
 (pdftex.def)             Requested size: 435.32422pt x 544.42233pt.
 
-<./FIGS/cyc_speeds.pdf, id=823, 805.08781pt x 1265.68857pt>
+<./FIGS/cyc_speeds.pdf, id=1027, 805.08781pt x 1265.68857pt>
 File: ./FIGS/cyc_speeds.pdf Graphic file (type pdf)
 
 <use ./FIGS/cyc_speeds.pdf>
@@ -3347,10 +3090,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--18
 ------------------------------------------------------------------------------
 [44
 
-])
-No file THESIS.tdo.
+]) (./THESIS.tdo
+
+Package natbib Warning: Citation `VanLeeuwen2007' on page 45 undefined on input
+ line 4.
+
+)
 \tf@tdo=\write7
 \openout7 = `THESIS.tdo'.
+
 
 No file THESIS.bbl.
 
@@ -3365,27 +3113,21 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (./THESIS.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
+Package rerunfilecheck Info: File `THESIS.out' has not changed.
+(rerunfilecheck)             Checksum: C6A77B408CE45C80B366C4B2625B7C2D;2658.
 
-
-Package rerunfilecheck Warning: File `THESIS.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `THESIS.out':
-(rerunfilecheck)             Before: 3D6CD8ECA87A7180E36B0EF33F705C14;42
-(rerunfilecheck)             After:  C6A77B408CE45C80B366C4B2625B7C2D;2658.
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 34993 strings out of 493104
- 660617 string characters out of 6136932
+ 35034 strings out of 493104
+ 661230 string characters out of 6136932
  845289 words of memory out of 5000000
- 37339 multiletter control sequences out of 15000+600000
+ 37378 multiletter control sequences out of 15000+600000
  21642 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,23n,80p,10478b,2059s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3424,10 +3166,10 @@ cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on THESIS.pdf (55 pages, 44339983 bytes).
+Output written on THESIS.pdf (55 pages, 44349765 bytes).
 PDF statistics:
- 1080 PDF objects out of 1200 (max. 8388607)
- 915 compressed objects within 10 object streams
+ 1306 PDF objects out of 1440 (max. 8388607)
+ 1139 compressed objects within 12 object streams
  406 named destinations out of 1000 (max. 500000)
- 74 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 
