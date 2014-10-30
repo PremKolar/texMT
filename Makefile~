@@ -1,0 +1,12 @@
+
+all: show
+
+show: THESIS.pdf
+	okular THESIS.pdf &
+
+THESIS.pdf: THESIS.dvi
+	dvipdf THESIS.dvi &
+
+THESIS.dvi: THESIS.tex
+	latex THESIS.tex &
+

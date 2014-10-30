@@ -21,6 +21,7 @@
 \usepackage{accents}
 \usepackage{xspace}
 \usepackage{setspace}
+\usepackage{lipsum}
 %\usepackage{vmargin}
 \usepackage{multicol}
 %\usepackage{fullpage}
@@ -37,9 +38,10 @@
 \raggedbottom
 \usepackage{wrapfig}
 \usepackage{geometry}
-\usepackage[framemethod=TikZ]{mdframed}
+% \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[titletoc]{appendix}
-\usepackage{kvoptions, xparse, etoolbox, color, xcolor, tikz, pstricks}
+% \usepackage{kvoptions, xparse, etoolbox, color, xcolor, tikz, pstricks}
+\usepackage{kvoptions, etoolbox, color, xcolor, tikz, pstricks}
 \usepackage{hyperref}
 \definecolor{linkcolor}{HTML}{00236D}
 \hypersetup{colorlinks, citecolor=blue, filecolor=blue, linkcolor=linkcolor,
@@ -47,4 +49,3 @@ urlcolor=blue}
 \usepackage{mcode}
 \usetikzlibrary{shapes,arrows}
 \usepackage{verbatim}
-\PreviewEnvironment{tikzpicture}
