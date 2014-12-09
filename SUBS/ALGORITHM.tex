@@ -1,38 +1,26 @@
 This section walks through the algorithm step by step, so as to explain
 which
 methods are used and how they are implemented.
-The idea is that the code from step \mcode{S01_..} on can only accept one well
+The idea is that the code from step \mcode{S00..} on can only accept one well
 defined structure of data. In earlier versions the approach was to write code
 that would adapt to different types of data automatically. All of this extra
 adaptivity turned out to visually and structurally clog the code more than it
 did offer much of a benefit. The concept was therefor reversed.
 \mcode{S00_prep_data} can be altered to produce required output. Yet, there
 should be no need to adapt any of the later steps in any way.
-All input parameters are to be set in \mcode{input_vars.m}.
+All input parameters are to be set in \mcode{INPUT.m} and \mcode{INPUT}\textit{xxx}\mcode{.m}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Step S00: Prepare Data}
 \mcode{function S00_prep_data}	\\
-Before the actual eddy detection and tracking is performed,  SSH-, latitude- and longitude-data is extracted from the given data at desired geo-coordinate bounds and saved as structures in the form needed by the next step (S01).
-\subsection{S00: Set Up}
-\mcode{function [DD]=set_up}\\
-The main purpose of this step is to Find the boundary-indices in the data
-describing a window that includes the user-chosen geo-coordinate window. 
-\subsection{S00: Parallel Part}
-\mcode{function spmd_body(DD)}\\
-This function distributes chunks of data (\ie bins of files) to the threads, which then perform the cutting and save their outputs to \mcode{'../DATA/CUTS/'}.
- The code can handle geo-coordinate input that crosses the longitudinal seam of
+Before the actual eddy detection and tracking is performed,  SSH-, latitude- and longitude-data is extracted from the given data at desired geo-coordinate bounds and saved as structures in the form needed by the next step (S01). This step also builts the file \mcode{window.mat} via \mcode{GetWindow3} which saves geometric information about the input and output data as well as a cross-referencing index-matrix which is used to reshape all \textit{cuts} to the user defined geo-coordinate-geometry. The code can handle geo-coordinate input that crosses the longitudinal seam of
 the input data. \Eg say the input data comes in matrices that start and end on
 some (not necessarily strictly meridional) line straight across the Pacific and
 it is the Pacific only that is to be analyzed for eddies, the output maps are
-stitched accordingly. If the desired range is zonally continuous \eg the entire
-southern ocean, the first tenth (zonally) of the input data is appended to the
-end of the output. This ensures that eddies right on the seam can be found and
-that eddies can be tracked across the seam. This results in eddies being
-identified twice in \mcode{function S03_filter_eddies.m} \todo{ref}. Such
-\textit{phantom} eddies are filtered out in \mcode{S04_track_eddies}.
+stitched accordingly. In the zonally continous case \ie the full-longitude case, an \textit{overlap} in x-direction across the \textit{seam}-meridian of the chosen map is included so that contours across the seam can be detected and tracked across it. One effect is that eddies in proximity to the seam can get detected twice at both zonal ends of the maps. The redundant \textit{ghost}-eddies get filtered out in \mcode{S05_track_eddies}. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \section{Step S01: Find Contours}
@@ -47,14 +35,43 @@ every step, here has the purpose of rechecking the \textit{cuts} for
 consistency and correcting the time-steps accordingly (\ie when files are
 missing). \mcode{initialise.m} also distributes the files to the threads \ie
 parallelization is in time dimension.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{Step S01b: Find Mean Rossby Radii and Phase Speeds}
 \mcode{function S01b_BruntVaisRossby}\\
-\todo{TODO!}
+
+This function...
+\begin{itemize}
+	\item
+	\begin{itemize}
+		\item
+		...calculates the pressure $P(z,\phi)$ in order to...
+		\item
+		...calculate the Brunt-V\"ais\"al\"a-Frequency according to $N^{2}(S,T,P,\phi)=-\frac{g(\phi)}{P} \frac{\pr \rho(S,T,P)}{\pr z}$
+		in order to...	
+	\end{itemize}
+	\item
+	\begin{itemize}
+		\item
+		...integrate the Rossby-Radius $\Lr=\frac{1}{\pi f}\INT{H}{ }{N}{z}$ and ...
+		\item
+		apply the long-Rossby-Wave dispersion relation to found $\Lr$ to estimate Rossby-Wave phase-speeds $c=-\frac{\beta}{k^2+(1/L_r)^2} \approx -\beta \Lr^2$
+	\end{itemize}
+\end{itemize}
+
+The 3-dimensional matrices ($S$ and $T$) are cut zonally into slices which then get distributed to the threads. This allows for matrix operations for all calculations which would otherwise cause memory problems due to the immense sizes of the 3d-data \footnote{\Eg the pop data has dimensions $42 \times 3600 \times 1800 $.}.   
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Step S02: Calculate Geostrophic Parameters}
 \mcode{function S02_infer_fields}\\ 
-This step reads the cut SSH data from \mcode{S00_prep_data} to
+This step reads the cut SSH data from \mcode{S00_prep_data} to perform 2 steps:
+\begin{enumerate}
+\item
+Calculate a mean over time of $SSH(y,x)$.
+	\item 
 \begin{itemize}
 	\item  use one of the files' geo-information to determine $\f$, $\dfdy$,
 $\g$ and the ratio $\g/\f$.
@@ -64,9 +81,12 @@ $\g$ and the ratio $\g/\f$.
  calculate deformation fields (vorticity, divergence, stretch and shear) via the
 fields supplied by the last step.
 \item calculate $\okubo$.
+\item
+Subtract the mean from step 1 from each $SSH(t)$ to filter out persistent SSH-gradients \eg across the Gulf-Stream.
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Step S03: Filter Eddies}
@@ -75,26 +95,25 @@ Since indices of all possible contour lines at chosen levels are available at
 this point, it is now time to subject each and every contour to a
 myriad of tests to decide whether it qualifies as the outline of an eddy as
 defined by the user input threshold parameters.
-\subsection{Reshape for Filtering}
+\subsection*{Reshape for Filtering and Correct out of Bounds Values}
 \mcode{function eddies2struct}\\
+\mcode{function CleanEddies}\\
 In the first step the potential eddies are transformed to a more sensible
 format, that is, a structure \mcode{Eddies(EddyCount)} where \mcode{EddyCount}
 is the number of all contours. The struct has fields for level, number of
-vertices, exact \ie interpolated coordinates and rounded integer coordinates.
-\subsection{Correct out of Bounds Values}
-\mcode{function CleanEddies}\\
+vertices, exact \ie interpolated coordinates and rounded integer coordinates.\\
 The interpolation of \mcode{contourc.m} sometimes creates indices that are
-either smaller than $0.5$ or larger than $N+0.5$ \footnote{where $N$ as the
+either smaller than $0.5$ or larger than $N+0.5$ \footnote{where $N$ is the
 domain size} for contours that lie along a boundary. After rounding, this
 seldomly leads to indices of either $0$ or $N+1$. These values get set to $1$
 and $N$ respectively in this step.
-\subsection{Descent/Ascend Water Column and Apply Checks}
+\subsection*{Descent/Ascend Water Column and Apply Checks}
 The concept of this step is a direct adaption of the algorithm described
 by \cite{Chelton2011}. It is split into two steps, one for anti-cyclones and one
 for cyclones. Consider \eg the anti-cyclone situation. Since all
 geostrophic anti-cyclones are regions of relative high pressure, all
 anti-cyclones \footnote{henceforth abbreviated AC} effect an elevated \SSH \ie
-a \textit{hill}. The algorithm ascends the full range SSH levels where
+a \textit{hill}. The algorithm ascends the full range of SSH levels where
 contours were found. Consider an approximately Gaussian shaped AC that has a
 peak SSH of say 5 increments larger than the average surrounding waters. 
 As the algorithm approaches the sea surface from below, it will eventually run
@@ -117,10 +136,10 @@ outlined.
 The first and most efficient test is to check whether indices of the
 contour are already flagged. Contours within an already found eddy get thereby
 rejected immediately.
-\subsubsection{Closed Ring}
-\mcode{function CR_ClosedRing}\\
-Contours that do not close onto themselves are obviously not eligible for
-further testing.
+%\subsubsection{Closed Ring}
+%\mcode{function CR_ClosedRing}\\
+%Contours that do not close onto themselves are obviously not eligible for
+%further testing.
 \subsubsection{Sub-Window}
 \mcode{function get_window_limits}\\
 \mcode{function EddyCut_init}\\
@@ -137,15 +156,24 @@ problem more efficiently than time could have been saved would said attempts
 have
 been successful. The current solution is basically just MATLAB's
 \mcode{imfill.m}, which was also used in the very first version of 09/2013.
-\subsubsection{Islands}
-\mcode{function CR_Nan}\\
-No flags within the eddy are allowed. This check also avoids contours around
-islands as all land is flagged \textit{a priori}.
+EDIT: \mcode{imfill.m} was replaced by using \mcode{inpoly.m} to determine which indices lie within the contour-polygon. This method seems to be more exact at determining whether the inside-part of one grid cell (with respect to the smooth, spline-interpolated contour) is larger than the outside part or not.  
+%\subsubsection{Islands}
+%\mcode{function CR_Nan}\\
+%No flags within the eddy are allowed. This check also avoids contours around
+%islands as all land is flagged \textit{a priori}.
 \subsubsection{Sense}
 \mcode{function CR_sense}\\
 \textbf{All} of the interior SSH values must lie either above or below current
 contour level, depending on whether anti-cyclones or cyclones are sought.
 \subsubsection{Area} \label{filter:area}
+
+sdhsrthert TODO
+ area.pixels = (z.fields.dx.*z.fields.dy).*(z.mask.inside + z.mask.rim_only/2);  % include 'half of rim'
+    area.total = sum(area.pixels(:));
+    area.meanPerSquare = mean(z.fields.dx(z.mask.filled).*z.fields.dy(z.mask.filled));
+    area.intrp = area.meanPerSquare*polyarea(z.coor.exact.x,z.coor.exact.y);
+    area.RadiusOverRossbyL = sqrt(area.intrp/pi)/rossbyL;
+
 \mcode{function EddyCircumference}\\
 Area described by the contour. This is needed for \ref{filter:shape}. This is
 not however related to the actual eddy scale determined in
