@@ -89,8 +89,8 @@ Subtract the mean from step 1 from each $SSH(t)$ to filter out persistent SSH-gr
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Step S03: Filter Eddies}
-\mcode{function S03_filter_eddies}\\ 
+\section{Step S04: Filter Eddies} \label{S:04}
+\mcode{function S04_filter_eddies}\\ 
 Since indices of all possible contour lines at chosen levels are available at
 this point, it is now time to subject each and every contour to a
 myriad of tests to decide whether it qualifies as the outline of an eddy as
@@ -108,6 +108,7 @@ domain size} for contours that lie along a boundary. After rounding, this
 seldomly leads to indices of either $0$ or $N+1$. These values get set to $1$
 and $N$ respectively in this step.
 \subsection*{Descent/Ascend Water Column and Apply Checks}
+\mcode{function walkThroughContsVertically} \\
 The concept of this step is a direct adaption of the algorithm described
 by \cite{Chelton2011}. It is split into two steps, one for anti-cyclones and one
 for cyclones. Consider \eg the anti-cyclone situation. Since all
@@ -130,7 +131,8 @@ entire procedure is repeated only this time \textit{descending} the SSH-range to
 find cyclones. The tests for cyclones and anti-cyclones are identical except for
 a factor $-1$ where applicable. In the following the most important steps of the
 analysis are
-outlined. 
+outlined.
+% ----------------------------------------------------------------------
 \subsubsection{NaN-Check Contour}
 \mcode{function CR_RimNan}\\
 The first and most efficient test is to check whether indices of the
@@ -140,13 +142,15 @@ rejected immediately.
 %\mcode{function CR_ClosedRing}\\
 %Contours that do not close onto themselves are obviously not eligible for
 %further testing.
+% ----------------------------------------------------------------------
 \subsubsection{Sub-Window}
 \mcode{function get_window_limits}\\
 \mcode{function EddyCut_init}\\
 For further analysis a sub-domain around the eddy is cut out of the SSH data.
 These functions determine the indices of that window and subtract the
 resultant offset for the contour indices. 
-\subsubsection{Logical Mask of Eddy Interiour}
+% ----------------------------------------------------------------------
+\subsubsection{Logical Mask of Eddy Interiour}\label{filter:cutmask}
 \mcode{function EddyCut_mask}\\
 Basically this function creates a
 \href{http://en.wikipedia.org/wiki/Flood_fill}{flood-fill} logical mask of the
@@ -157,31 +161,29 @@ have
 been successful. The current solution is basically just MATLAB's
 \mcode{imfill.m}, which was also used in the very first version of 09/2013.
 EDIT: \mcode{imfill.m} was replaced by using \mcode{inpoly.m} to determine which indices lie within the contour-polygon. This method seems to be more exact at determining whether the inside-part of one grid cell (with respect to the smooth, spline-interpolated contour) is larger than the outside part or not.  
+% ----------------------------------------------------------------------
 %\subsubsection{Islands}
 %\mcode{function CR_Nan}\\
 %No flags within the eddy are allowed. This check also avoids contours around
 %islands as all land is flagged \textit{a priori}.
+% ----------------------------------------------------------------------
 \subsubsection{Sense}
 \mcode{function CR_sense}\\
 \textbf{All} of the interior SSH values must lie either above or below current
 contour level, depending on whether anti-cyclones or cyclones are sought.
+% ----------------------------------------------------------------------
 \subsubsection{Area} \label{filter:area}
-
-sdhsrthert TODO
- area.pixels = (z.fields.dx.*z.fields.dy).*(z.mask.inside + z.mask.rim_only/2);  % include 'half of rim'
-    area.total = sum(area.pixels(:));
-    area.meanPerSquare = mean(z.fields.dx(z.mask.filled).*z.fields.dy(z.mask.filled));
-    area.intrp = area.meanPerSquare*polyarea(z.coor.exact.x,z.coor.exact.y);
-    area.RadiusOverRossbyL = sqrt(area.intrp/pi)/rossbyL;
-
+\mcode{function getArea}\\
+The main goal here is to determine the most exact area encompassed by the exact coordinates of the contour. It does so via MATLAB's \mcode{polyarea} function. This area is not related to the scale $\sigma$ that is determined in \ref{filter:dynscale}. It is however the relevant scale for \ref{filter:shape}.
 \mcode{function EddyCircumference}\\
-Area described by the contour. This is needed for \ref{filter:shape}. This is
-not however related to the actual eddy scale determined in
+Circumference \eg line-length described by the contour. This is the other parameter needed for \ref{filter:shape}. This is however neither related to the actual eddy scale determined in
 \ref{filter:dynscale}.
+% ----------------------------------------------------------------------
 \subsubsection{Cirumference}
 \mcode{function EddyCircumference}\\
 Line-length (sum of Euclidean norm of all nodes) of the contour.
 \newpage
+% ----------------------------------------------------------------------
 \subsubsection{Shape}\label{filter:shape}
 \mcode{function CR_Shape}\\
 \begin{wrapfigure}{r}{0.4\textwidth}
@@ -189,7 +191,6 @@ Line-length (sum of Euclidean norm of all nodes) of the contour.
 	\caption{Different values of the isoperimetric quotient.}
 	\label{fig:isoper}
 \end{wrapfigure}
-
 This is the crucial part of deciding whether the object is \textit{round
 enough}. A perfect vortex with $\dpr{u}{y}=-\dpr{v}{x}$ is necessarily a
 circle. The problem is that eddies get formed, die, merge, run into obstacles,
@@ -203,6 +204,7 @@ require:\\ \textit{The distance between any pair of points within the connected
 region must be less than a specified maximum} \citep{Chelton2011}.\\
 While this method clearly avoids overly elongated shapes it allows for stronger
 deformation within its distance bounds. \todo{compare both, show pictures}
+% ----------------------------------------------------------------------
 \subsubsection{Amplitude} \label{filter:amp}
 \mcode{function CR_AmpPeak}\\
 This function determines the amplitude \ie the maximum of the absolute
@@ -212,16 +214,40 @@ done by \cite{Chelton2011}. The
 amplitude is then tested against the user-given threshold. The function also
 creates a matrix with current contour level shifted to zero and all values
 outside of the eddy set to zero as well. 
-\subsubsection{Profiles}
+% ----------------------------------------------------------------------
+\subsubsection{Chelton's Scales} \label{filter:chstuff}
+\mcode{function cheltStuff}\\
+\cite{chelton2011} introduced 4 different eddy-scales.
+\begin{enumerate}
+	\item
+	The effective scale $L_{eff}$ as the radius of a circle with its area equal to that enclosed by the contour.
+	\item
+	The scale $L_e  = L(z=\expp{-1} a)$ where $a$ as the amplitude with reference to the original contour and the $z$-axis zero-shifted to that contour. In other words the effective scale of the contour that is calculated at $1/\expp{}$ of the original amplitude.
+	\item
+	The scale $L=L_e/\sqrt{2}$.
+	\item
+	The scale $L_s$ which is \textit{a direct estimate based on the contour of SSH within the eddy interior around which the average geostrophic speed is maximum.} \citep{chelton2011} It is hence conceptually the same as $\sigma$ \todoil{legend ref}. This scale was not calculated here, as I could not think of an efficient simple way to estimate the area bounded by maximum geostrophic speed \ie the zero-vorticity contour. To understand why this would be difficult to achieve see also sections... \todoil{ref to approp sections eg noise in vort etc}.  
+\end{enumerate}
+% ----------------------------------------------------------------------
+\subsubsection{Profiles}\label{filter:profiles}
 \mcode{function EddyProfiles}\\
-This step saves the meridional and zonal profiles of SSH, U and V. 
+This step
+\begin{itemize}
+\item 
+ saves the meridional and zonal profiles of SSH, U and V through  the eddie's peak and spanning the entire sub-domain as described in \ref{filter:cutmask}.
+\item
+creates spline functions from the ssh-profiles and uses them to interpolate the profiles onto 100-piece equi-distant coordinate vectors to buid smooth interpolated versions of ssh-profiles in both directions.
+\item
+in turn uses the splined data to create smooth 4-term Fourier-series functions for the profiles.
+\end{itemize}
+\todoil{show plots fourier/non fourier etc}
 \begin{wrapfigure}{r}{0.4\textwidth}
 	\includegraphics[width=0.4\textwidth]{profiles}
-	\caption{Zonal $x$- and $z$-normalized cyclone-profiles.}
+	\caption{Zonal $x$- and $z$-normalized cyclone-profiles (early data $\sim$ '13/12).}
 	\label{fig:profiles}
 \end{wrapfigure}
-
-\subsubsection{\textit{Dynamic} Scale} \label{filter:dynscale}
+% ----------------------------------------------------------------------
+\subsubsection{\textit{Dynamic} Scale ($\sigma$)} \label{filter:dynscale}
 \mcode{function EddyRadiusFromUV}\\
 The contour line that is being used to detect the eddy is not
 necessarily a good measure of the eddy's \textit{scale} \ie it doesn't
@@ -243,22 +269,22 @@ the eddy's peak in positive and negative y and x directions respectively.
 In the case of a meandering jet with a maximum flow speed at its center, that
 is shedding off an eddy, this scale corresponds to half the distance between
 two opposing center-points of the meander. It is also the distance at which a
-change in vorticity polarity occurs and is thus assumed to be the most plausible
-\textit{dividing line} between vortices. 
-\todo{theres probably a better way via okubo weiss!}
-In practice the velocity-gradient profiles need to be smoothed to successfully
-determine their first adequate zero-crossing. Once the zero crossings in all
-4 directions are found, their mean is taken as the eddy's scale. Note that this
-is again similar to what \cite{Chelton2011} did. 
-\subsubsection{\textit{Dynamic} Amplitude}
+change in vorticity-polarity occurs and is thus assumed to be the most plausible
+\textit{dividing line} between vortices. \\
+Trying to determine the location where this sign change in vorticity occurs in the profiles turns out to be very tricky. What we seek are local extremata of the geostrophic speeds \ie of the ssh-gradients $h_x$. In a perfect Gaussian-shaped eddy, these would simply correspond to the first local extremata of $h_x$ away from the peak. In \textit{reality} the eddies can be very wobbly with numerous local maxima and minima in the gradients of their flanks. One could argue, that it must be the largest extremata, as it is the highest geostrophic speeds that are sought. In practice \footnote{especially for the high-resolution model data.} multiple superimposed signals of different scales often create very strong gradients locally. But the main issue here is that one weak eddy adjacent to one strong eddy also has the stronger gradients of the stronger one within its domain so that simply looking for the fastest flow speeds along the profiles is insufficient. It is also not possible to restrict the cut domain to the extent of a single eddy only, because at the point where the domain is selected, we do not know yet whether the detection algorithm \textit{took bait} at the eddy's base or later close to the tip. \\
+The best method thus far seems to be to use the Fourier-series functions from \ref{filter:profiles} to determine the first extremata away from the eddy's peak. The Fourier order was chosen to be 4 by trial and error. The effect is that small-scale low-amplitude noise is avoided, allowing for more reliable determinations of $\grad^2 h_{fou} = 0$       \\
+ Once the zero crossings in all 4 directions are found, their mean is taken as the eddy's scale. 
+% ----------------------------------------------------------------------
+\subsubsection{\textit{Dynamic} Amplitude} \label{filter:ampDyn}
 \mcode{function EddyAmp2Ellipse}\\
 As mentioned above, the contour that helps to detect the eddy is not
 representative of its extent. This is also true for the $z$-direction, for the
 same reasons. This function therefor takes an SSH-mean at indices of the ellipse
 created by the determined zonal and meridional \textit{dynamical} diameters,
 and uses this as the basal value to determine a \textit{dynamic} amplitude.
-\subsubsection{Center of Volume}
-\mcode{function EddyArea2Ellipse}\\
+% ----------------------------------------------------------------------
+\subsubsection{Center of Volume} \label{filter:CoV}
+%\mcode{function EddyArea2Ellipse}\\
 \mcode{function CenterOfVolume}\\
 Instead of using the geo-position of the eddy's peak in the tracking procedure,
 it was decided to instead use the center of the volume created by the basal
@@ -273,7 +299,30 @@ existed within the eddy. \Eg in one time-step local maximum $A$ might be just a
 little bit larger than local maximum $B$ and one time-step later a slight shift
 of mass pushes local maximum $B$ in pole position, creating a substantial jump
 in the eddy-identifying geo-position hence complicating the tracking procedure. 
-\section{Step S04: Track Eddies}
+% ----------------------------------------------------------------------
+\subsubsection{Geo Projection}\label{filter:projLocs}
+%\mcode{function EddyArea2Ellipse}\\
+\mcode{function ProjectedLocations}\\
+An optional threshold on the distance an eddy is allowed to travel over one time-step is implemented in the tracking algorithm \ref{S:04}. This is a direct adaptation of the ellipse-based constraint described by \cite{chelton2011}. The maximum distance in western direction traveled by the eddy within one time-step is limited according to $x_{west} = \alpha c \delta{t} $ where $c$ as the local long-Rossby-wave phase-speed and \eg $\alpha=1.75$. In eastern direction the maximum is fixed at a value of \eg $x_{east} = 150\mathrm{km}$. This value is also used to put a lower bound on $x_{west}$ and for half the minor axis ($y$-direction) of the resultant ellipse.    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Step S05: Track Eddies} \label{S:05}
 \mcode{function function S04_track_eddies}\\
 Due to the the relatively fine temporal resolution (daily) of the model data,
 the tracking procedure turns out to be much simpler than the one described by
