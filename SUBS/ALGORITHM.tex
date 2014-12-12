@@ -303,7 +303,9 @@ in the eddy-identifying geo-position hence complicating the tracking procedure.
 \subsubsection{Geo Projection}\label{filter:projLocs}
 %\mcode{function EddyArea2Ellipse}\\
 \mcode{function ProjectedLocations}\\
-An optional threshold on the distance an eddy is allowed to travel over one time-step is implemented in the tracking algorithm \ref{S:04}. This is a direct adaptation of the ellipse-based constraint described by \cite{chelton2011}. The maximum distance in western direction traveled by the eddy within one time-step is limited according to $x_{west} = \alpha c \delta{t} $ where $c$ as the local long-Rossby-wave phase-speed and \eg $\alpha=1.75$. In eastern direction the maximum is fixed at a value of \eg $x_{east} = 150\mathrm{km}$. This value is also used to put a lower bound on $x_{west}$ and for half the minor axis ($y$-direction) of the resultant ellipse.    
+An optional threshold on the distance an eddy is allowed to travel over one time-step is implemented in the tracking algorithm \ref{S:04}. This is a direct adaptation of the ellipse-based constraint described by \cite{chelton2011}. The maximum distance in western direction traveled by the eddy within one time-step is limited according to $x_{west} = \alpha c \delta{t} $ with $c$ as the local long-Rossby-wave phase-speed and \eg $\alpha=1.75$. In eastern direction the maximum is fixed to a value of \eg $x_{east} = 150\mathrm{km}$. This value is also used to put a lower bound on $x_{west}$ and for half the minor axis ($y$-direction) of the resultant ellipse.   \\
+This function builds a mask of eligible geo-coordinates with respect to the next time-step.
+
 
 
 
