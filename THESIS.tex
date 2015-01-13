@@ -1,65 +1,67 @@
-\input{SUBS/HEADER}
+\input{SUBS/HEADER.tex}
 \begin{document}
 	\setlength{\parindent}{5mm}
-	\setlength{\belowdisplayskip}{10pt} \setlength{\belowdisplayshortskip}{1pt}
-	\setlength{\abovedisplayskip}{10pt} \setlength{\abovedisplayshortskip}{1pt}
-	\newgeometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+	\setlength{\abovedisplayskip}{10pt}
+	\setlength{\abovedisplayshortskip}{1pt}
+	%\newgeometry{left=4cm, right=4cm, top=2cm, bottom=2cm}
 	\noindent
 	%#######################################################################
-	%\frontmatter
-	%\pagestyle{fancy}
-	%\setcounter{secnumdepth}{4}
-	%\input{SUBS/timetable.tex}
-	%\input{SUBS/titlepage.tex}
-	%\input{SUBS/abstract.tex}
-	%\tableofcontents
-	%\chapter{Legend}
-		%\newpage
-		%\input{SUBS/legend.tex}
-	%%#######################################################################
-	%\mainmatter
-	%\setstretch{0.9}
-	%\newgeometry{left=1cm, right=4cm, top=2cm, bottom=2cm}
-	%\pagestyle{fancy} % Return the page headers back to the "fancy" style
-	%\chapter{Introduction}
-		%\input{SUBS/INTRODUCTION.tex}
+	\frontmatter
+	\pagestyle{fancy}
+	\setcounter{secnumdepth}{4}
+	\input{SUBS/timetable.tex}
+	\input{SUBS/titlepage.tex}
+	\input{SUBS/abstract.tex}
+	\tableofcontents
+	\chapter{Legend}
+	\newpage
+	\input{SUBS/legend.tex}
+	%%%#######################################################################
+	\mainmatter
+	\setstretch{0.9}
+	\newgeometry{left=6cm, right=2cm, top=6cm, bottom=2cm}
+	\pagestyle{fancy}
+	\pagestyle{headings}
+	\chapter{Introduction}
+		\input{SUBS/INTRODUCTION.tex}
 	\chapter{The Algorithm}
 		\input{SUBS/ALGORITHM.tex}
 		\input{SUBS/codeFlowChart.tex}
-	%\chapter{Results}
-		%\input{SUBS/RESULTS.tex}
-	%\chapter{Discussion}
-		%\todo[inline]{discussion...}
-	%%#######################################################################
-	%\appendix
-	%\renewcommand{\thechapter}{\Alph{chapter}}
+	\chapter{Results}
+		\input{SUBS/RESULTS.tex}
+	\chapter{Discussion}
+		\todo[inline]{discussion...}
+	%%%#######################################################################
+	\appendix
+	\renewcommand{\thechapter}{\Alph{chapter}}
 	%\setlength{\belowdisplayskip}{2pt} \setlength{\belowdisplayshortskip}{1pt}
 	%\setlength{\abovedisplayskip}{2pt} \setlength{\abovedisplayshortskip}{1pt}
-	%\begin{appendices}
+	\begin{appendices}
 	%\setcounter{secnumdepth}{1}
-	%\pagestyle{fancy}
-	%\chapter{Turbulence Aspects}
-		%\input{SUBS/turbu_categories.tex}
-	%\chapter{Eddy Categories}
-		%\input{SUBS/eddy_categories.tex}
-	%\chapter{Further Papers}
-		%\input{SUBS/history2.tex}
-	%\chapter{Derivations}
-		%\input{SUBS/Derivations.tex}
+	\pagestyle{fancy}
+	\chapter{Turbulence Aspects}
+		\input{SUBS/turbu_categories.tex}
+	\chapter{Eddy Categories}
+		\input{SUBS/eddy_categories.tex}
+	\chapter{Further Papers}
+		\input{SUBS/history2.tex}
+	\chapter{Derivations}
+		\input{SUBS/Derivations.tex}
+	\end{appendices}
+	%%#######################################################################
 	%\newgeometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
 	%\chapter{Preview...}
-		%\input{SUBS/preview.tex} 
-	%\end{appendices}
-	%%#######################################################################
+		%\input{SUBS/preview.tex}
 	%\backmatter
 	%\newgeometry{left=4cm, right=4cm, top=3cm, bottom=3cm}
-	%\input{SUBS/declaration.tex}
-	%\input{SUBS/acknol.tex}
+	\input{SUBS/declaration.tex}
+	\input{SUBS/acknol.tex}
 	%\input{SUBS/junk.tex}
 	%\input{SUBS/UNSRTD.tex} \todoil{SORT}
-	%\listoftodos
+	\listoftodos
 	%\bibliographystyle{authordate1}
+	\bibliographystyle{plainnat}
 	%\bibliographystyle{plainnat}
-	%\bibliographystyle{plainnat}
+	%\bibliography{/home/niko/documents/library}
 	%\bibliography{/home/niko/documents/library}
 \end{document}

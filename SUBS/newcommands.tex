@@ -1,18 +1,165 @@
+% ######################################################################
+% OTHER
+% ######################################################################
+\let\oldeqref\eqref
+\let\oldhat\hat
+\newcommand{\rnm}[1]{\romannumeral #1}
+\newcommand{\Rmn}[1]{\Roman #1}
+\newcommand{\footder}[1]{\footnote{See section \ref{#1} for derivation.}}
+\definecolor{colboxcolor}{HTML}{9ECBFF}
+\definecolor{legendcol}{HTML}{7BBCBD}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
 \newcommand*{\eg}{e.g.\@\xspace}
 \newcommand*{\ie}{i.e.\@\xspace}
 \newcommand*{\Eg}{E.g.\@\xspace}
 \newcommand*{\Ie}{I.e.\@\xspace}
-\makeatletter
-\newcommand*{\etc}{%
-    \@ifnextchar{.}%
-        {etc}%
-        {etc.\@\xspace}%
+
+%\makeatletter
+\newcommand*{\etc}{\@ifnextchar{.}{etc}{etc.\@\xspace}}
+%\makeatletter
+\newcommand{\litem}[2]{\def\@itemlabel{\textbf{#1}}\item\def\@currentlabel{\textbf{#1}}\label{#2}}
+%\makeatother
+\newcommand{\todoil}[1]{\todo[color=red]{#1}}
+
+\newcommand{\todoilc}[2]{\todo[color=#1]{#2}}
+
+\newcommand{\derref}[1]{\footnote{see\fcolorbox{white}{gray!20}{Derivation \ref{#1}}}}
+
+\newcommand{\derrefs}[1]{\footnote{see\fcolorbox{white}{gray!20}{Derivations \cref{#1}}}}
+
+\renewcommand{\dateseparator}{-}
+
+\newcommand\acknowledgements[1]
+{
+	\btypeout{Acknowledgements}
+	\thispagestyle{plain}
+	\begin{center}{\large{\textit{Acknowledgements}}\par}\end{center}
+	{\normalsize #1}
+	\vfil\vfil\null
 }
-\let\oldhat\hat
-\usepackage{relsize}
-\newcommand{\rnm}[1]{\romannumeral #1}
-\newcommand{\Rmn}[1]{\Roman #1}
+
+\newcommand\Declaration[1]
+{
+	\btypeout{Declaration of Authorship}
+	\thispagestyle{plain}
+	\null\vfil
+	%\vskip 60\p@
+	\begin{center}{\huge\bf Declaration of Authorship\par}\end{center}
+	%\vskip 60\p@
+	{\normalsize #1}
+	\vfil\vfil\null
+	%\cleardoublepage
+}
+
+%\fancypagestyle{fancybook}{%
+    %\fancyhf{}%
+    %% Note the ## here. It's required because \fancypagestyle is making a macro (\ps@fancybook).
+    %% If we just wrote #1, TeX would think that it's the argument to \ps@fancybook, but
+    %% \ps@fancybook doesn't take any arguments, so TeX would complain with an error message.
+    %% You are not expected to understand this.
+    %\renewcommand*{\sectionmark}[1]{ \markright{\thesection\ ##1} }%
+    %\renewcommand*{\chaptermark}[1]{ \markboth{\chaptername\ \thechapter: ##1}{} }%
+    %% Increase the length of the header such that the folios
+    %% (typography jargon for page numbers) move into the margin
+    %\fancyhfoffset[LE]{6mm}% slightly less than 0.25in
+    %\fancyhfoffset[RO]{6mm}%
+    %% Put some space and a vertical bar between the folio and the rest of the header
+    %\fancyhead[LE]{\thepage\hskip3mm\vrule\hskip3mm\leftmark}%
+    %\fancyhead[RO]{\rightmark\hskip3mm\vrule\hskip3mm\thepage}%
+%}
+% ######################################################################
+% ENVIRONTMENTS
+% ######################################################################
+
+\newenvironment{colbox}[1]
+{
+	\def\FrameCommand{\colorbox{colboxcolor}}%
+	\MakeFramed{\advance\hsize-\width \FrameRestore\cornersize{0.9}}
+	\begin{scriptsize}
+	\section{#1}
+}
+{
+    \end{scriptsize}
+	\endMakeFramed
+}
+% -----------------------
+\newenvironment{colbox2}[1]
+{
+	\def\FrameCommand{\colorbox{legendcol}}%
+	\MakeFramed{\advance\hsize-\width \FrameRestore}
+	\begin{footnotesize}
+}
+{
+\end{footnotesize}
+	\endMakeFramed
+}
+% -----------------------
+\newenvironment{abstract}%
+{
+    \cleardoublepage\thispagestyle{empty}\null\vfill\begin{center}%
+    \bfseries\abstractname\end{center}
+}
+{
+	\vfill\null
+}
+%  #####################################################################
+% STYLES
+% ######################################################################
+ \mdfdefinestyle{definition}
+ {linewidth=1,
+ backgroundcolor=yellow!40,
+ outerlinecolor=blue!70!black,
+ frametitlebackgroundcolor=gray!20,
+ % frametitlerule=true,
+ innertopmargin=\topskip,}
+ \mdtheorem[
+ style=definition]{definition}{Definition}
+ \mdfdefinestyle{codepiece}
+ {linewidth=15pt,
+ linecolor=black,
+ %frametitlerule=true,
+ backgroundcolor=red!1,
+ outerlinecolor=black,
+ frametitlebackgroundcolor=blue!10,
+ innertopmargin=\topskip,}
+ \mdtheorem[
+ style=codepiece]{codepiece}{Code}[chapter]
+ \mdfdefinestyle{function}
+ {%linewidth=15pt,
+ %linecolor=black,
+ %frametitlerule=true,
+ %backgroundcolor=red!1,
+ %outerlinecolor=black,
+ %frametitlebackgroundcolor=blue!10,
+ innertopmargin=-.5cm,}
+ \mdtheorem[
+ style=function]{function}{sub-routine}[section]
+ \mdfdefinestyle{derivation}
+ {linecolor=red,
+ outerlinewidth=2,
+ leftmargin=40mm,
+ rightmargin=40mm,
+ linewidth=2,
+ frametitlerule=true,
+ frametitlebackgroundcolor=gray!20,
+ innertopmargin=\topskip,roundcorner=10pt,}
+ \mdtheorem[
+ style=derivation]{derivation}{Derivation}
+ \mdfdefinestyle{eddy}
+ {linewidth=.5,
+ % align=center,
+ % backgroundcolor=yellow!40,
+ outerlinecolor=black,
+ frametitlebackgroundcolor=gray!20,
+ % frametitlerule=true,
+ innertopmargin=\topskip,}
+ \mdtheorem[
+ style=eddy]{eddy}{Vortex}[chapter]
+ \mdtheorem[
+ style=eddy]{turbu}{Turbulence}[chapter]
+%  #####################################################################
+% MATH
+% ######################################################################
 \renewcommand{\vec}[1]{\mathbf{\bm{#1}}}
 \newcommand{\ten}[1]{\mathbb{\bm{#1}}}
 \newcommand{\tent}[1]{\mathbb{\bm{#1}}^{\mathsmaller T}}
@@ -27,8 +174,6 @@
 \newcommand{\gradt}{ \breve{\grad}}
 \renewcommand{\div}{\grad \cdot}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\footder}[1]{\footnote{See section \ref{#1} for derivation.}}
-\let\oldeqref\eqref
 \renewcommand{\eqref}[1]{equation \oldeqref{#1}}
 \newcommand{\eqsref}[1]{equations \oldeqref{#1}}
 \newcommand{\Eqref}[1]{Equation \oldeqref{#1}}
@@ -43,96 +188,7 @@
 \newcommand{\tsca}[1]{\underaccent{\neg}{#1}}
 \newcommand{\order}[1]{\mathcal{O}\left( 10^{#1}\right)}
 \newcommand{\sign}[1]{\mathrm{sgn}\left(#1\right)}
-\newenvironment{colbox}[1]
-{
-	\def\FrameCommand{\colorbox{colboxcolor}}%
-	\MakeFramed{\advance\hsize-\width \FrameRestore\cornersize{0.9}}
-	\begin{scriptsize}
-	\section{#1}
-}
-{
-      \end{scriptsize}
-	\endMakeFramed
-}
-
-\newenvironment{colbox2}[1]
-{
-
-	\def\FrameCommand{\colorbox{legendcol}}%
-	\MakeFramed{\advance\hsize-\width \FrameRestore}
-	\begin{footnotesize}
-}
-{
-\end{footnotesize}
-	\endMakeFramed
-}
-
- \definecolor{colboxcolor}{HTML}{9ECBFF}
-\definecolor{legendcol}{HTML}{7BBCBD}
-
-%%####################################################################
-%%####################################################################
-\newenvironment{kingbox}[1]
-{
-	%\begin{minipage}{.4\textwidth}
-	\begin{center}
-	\begin{framed}
-%\begin{description}
-\textbf{#1} \\
-}
-{
-%\end{description}
-	\end{framed}
-	\end{center}
-	%\end{minipage}
-	}
-
-
-
-%%####################################################################
-%%####################################################################
 \DeclareMathOperator{\tr}{Tr}
-\newcommand*{\supervisor}[1]{\def\supname{#1}}
-\newcommand*{\thesistitle}[1]{\def\ttitle{#1}}
-\newcommand*{\examiner}[1]{\def\examname{#1}}
-\newcommand*{\degree}[1]{\def\degreename{#1}}
-\newcommand*{\authors}[1]{\def\authornames{#1}}
-\newcommand*{\addresses}[1]{\def\addressnames{#1}}
-\newcommand*{\university}[1]{\def\univname{#1}}
-\newcommand*{\UNIVERSITY}[1]{\def\UNIVNAME{#1}}
-\newcommand*{\department}[1]{\def\deptname{#1}}
-\newcommand*{\DEPARTMENT}[1]{\def\DEPTNAME{#1}}
-\newcommand*{\group}[1]{\def\groupname{#1}}
-\newcommand*{\GROUP}[1]{\def\GROUPNAME{#1}}
-\newcommand*{\faculty}[1]{\def\facname{#1}}
-\newcommand*{\FACULTY}[1]{\def\FACNAME{#1}}
-\newcommand*{\subject}[1]{\def\subjectname{#1}}
-\newcommand*{\keywords}[1]{\def\keywordnames{#1}}
-\newcommand\btypeout[1]{\bhrule\typeout{\space #1}\bhrule}
-\newcommand\bhrule{\typeout{------------------------------------------------------------------------------}}
-\newcommand\Declaration[1]{
-\btypeout{Declaration of Authorship}
-\thispagestyle{plain}
-\null\vfil
-%\vskip 60\p@
-\begin{center}{\huge\bf Declaration of Authorship\par}\end{center}
-%\vskip 60\p@
-{\normalsize #1}
-\vfil\vfil\null
-%\cleardoublepage
-}
-\newenvironment{abstract}%
-    {\cleardoublepage\thispagestyle{empty}\null\vfill\begin{center}%
-    \bfseries\abstractname\end{center}}%
-    {\vfill\null}
-\newcommand\acknowledgements[1]{
-\btypeout{Acknowledgements}
-\thispagestyle{plain}
-\begin{center}{\large{\textit{Acknowledgements}} \par}\end{center}
-{\normalsize #1}
-\vfil\vfil\null
-}
-
 \newcommand{\Bu}[0]{\mathrm{\hyperref[def:Bu]{Bu}}\;}
 \newcommand{\Ro}[0]{\mathrm{\hyperref[def:Ro]{Ro}}\;}
 \newcommand{\Rh}[0]{\mathrm{\hyperref[def:Rh]{R_{\beta}}}\;}
@@ -158,74 +214,32 @@
 \newcommand{\INT}[4]{\int_{#1}^{#2} #3 \; \mathrm{d}#4}
 \newcommand{\intms}[1]{ \left< #1 \right>}
 \newcommand{\rG}[0]{\hyperref[def:rG]{\mathfrak{r}}\;}
-\makeatletter
-\newcommand{\litem}[2]{%
-\def\@itemlabel{\textbf{#1}}
-\item
-\def\@currentlabel{\textbf{#1}}\label{#2}}
-\makeatother
+\renewcommand{\deg}[1]{#1^\circ}
 \newcommand{\decom}[1]{\overline{#1} + #1'}
 \newcommand{\inbr}[1]{\left( #1 \right)}
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\timesES}[2]{\epsilon_{jki} #1_j #2_k \unitvec{e}_i}
 \newcommand{\oh}[0]{\frac{1}{2}}
-\newcommand{\todoil}[1]{\todo[color=red]{#1}}
-\newcommand{\todoilc}[2]{\todo[color=#1]{#2}}
-\newcommand{\derref}[1]{\footnote{see\fcolorbox{white}{gray!20}{Derivation \ref{#1}}}
-}
-\newcommand{\derrefs}[1]{\footnote{see\fcolorbox{white}{gray!20}{Derivations \cref{#1}}}
-}
-% \mdfdefinestyle{definition}
-% {linewidth=1,
-% backgroundcolor=yellow!40,
-% outerlinecolor=blue!70!black,
-% frametitlebackgroundcolor=gray!20,
-% % frametitlerule=true,
-% innertopmargin=\topskip,}
-% \mdtheorem[
-% style=definition]{definition}{Definition}
-% \mdfdefinestyle{codepiece}
-% {linewidth=15pt,
-% linecolor=black,
-% %frametitlerule=true,
-% backgroundcolor=red!1,
-% outerlinecolor=black,
-% frametitlebackgroundcolor=blue!10,
-% innertopmargin=\topskip,}
-% \mdtheorem[
-% style=codepiece]{codepiece}{Code}[chapter]
-% \mdfdefinestyle{function}
-% {%linewidth=15pt,
-% %linecolor=black,
-% %frametitlerule=true,
-% %backgroundcolor=red!1,
-% %outerlinecolor=black,
-% %frametitlebackgroundcolor=blue!10,
-% innertopmargin=-.5cm,}
-% \mdtheorem[
-% style=function]{function}{sub-routine}[section]
-% \mdfdefinestyle{derivation}
-% {linecolor=red,
-% outerlinewidth=2,
-% leftmargin=40mm,
-% rightmargin=40mm,
-% linewidth=2,
-% frametitlerule=true,
-% frametitlebackgroundcolor=gray!20,
-% innertopmargin=\topskip,roundcorner=10pt,}
-% \mdtheorem[
-% style=derivation]{derivation}{Derivation}
-% \mdfdefinestyle{eddy}
-% {linewidth=.5,
-% % align=center,
-% % backgroundcolor=yellow!40,
-% outerlinecolor=black,
-% frametitlebackgroundcolor=gray!20,
-% % frametitlerule=true,
-% innertopmargin=\topskip,}
-% \mdtheorem[
-% style=eddy]{eddy}{Vortex}[chapter]
-% \mdtheorem[
-% style=eddy]{turbu}{Turbulence}[chapter]
+% ######################################################################
+% VARIABLES
+% ######################################################################
+\newcommand*{\supervisor}[1]{\def\supname{#1}}
+\newcommand*{\thesistitle}[1]{\def\ttitle{#1}}
+\newcommand*{\examiner}[1]{\def\examname{#1}}
+\newcommand*{\degree}[1]{\def\degreename{#1}}
+\newcommand*{\authors}[1]{\def\authornames{#1}}
+\newcommand*{\addresses}[1]{\def\addressnames{#1}}
+\newcommand*{\university}[1]{\def\univname{#1}}
+\newcommand*{\UNIVERSITY}[1]{\def\UNIVNAME{#1}}
+\newcommand*{\department}[1]{\def\deptname{#1}}
+\newcommand*{\DEPARTMENT}[1]{\def\DEPTNAME{#1}}
+\newcommand*{\group}[1]{\def\groupname{#1}}
+\newcommand*{\GROUP}[1]{\def\GROUPNAME{#1}}
+\newcommand*{\faculty}[1]{\def\facname{#1}}
+\newcommand*{\FACULTY}[1]{\def\FACNAME{#1}}
+\newcommand*{\subject}[1]{\def\subjectname{#1}}
+\newcommand*{\keywords}[1]{\def\keywordnames{#1}}
+\newcommand\btypeout[1]{\bhrule\typeout{\space #1}\bhrule}
+\newcommand\bhrule{\typeout{------------------------------------------------------------------------------}}
+% ######################################################################
 
-\renewcommand{\dateseparator}{-}
