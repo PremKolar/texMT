@@ -1,36 +1,39 @@
-\todoil{explain time frame chosen,del t, geometry etc}
-\begin{figure}[H!]
-\begin{tabularx}{\textwidth}{|X|X|}
-	\hline	
-	    time frame &  \displaydate{runsStart} till \displaydate{runsEnd}\\
-	 \hline
-	AVISO geometry &   $760 x 1400$ true Mercator \\
-	 \hline
-	POP   geometry &   $1800 x 3600$ \\
-	 \hline
-\end{tabularx}
-\end{figure}
-\todoil{check values}  
-\todoil{lookup term used for krummes grid}
 
-\subsection{The SSH-Contour-Method}
+The short time-frame and limited computational ressources allowed for only a few complete global runs over the available data. It was therefor critical to carefully choose which method/parameters to use in order to maximize the deduceable insight from the results.
+For best comparability of the results with each other it was decided to agree on one complete set of parameters which would then be altered at only a few key parameters. The first run is an attempt to reproduce the results from \citet{chelton14}, setting the algorithm to be the most similar to the algorithm described by \cite{chelton14}. This method will be called \MI. The SSH-data for this run is of course the Aviso product, just as in \cite{chelton14}. The second run is equivalent, except that this time all new alternative methods as described in \ref{TODO} are used. This setting will be called \MII. Both \MI and \MII are then run with 7-day time-step POP data as well. To investigate what role time-resolution plays an \MII, 3-day-time-step run over POP data was started next. Finally, to further investigate the effects of resolution in space, the POP data was remapped to that of the Aviso data and fed to the \MI method. Start and end dates were fix for all runs as the intersection of availability of both data sets (POP and Aviso).
+
+\subsection{\MI - 7day - Aviso}
 The algorithm used in this section is loosely based on the description of the
 algorithm described by \citep{chelton14}.
 
-\subsubsection{weekly AVISO TODO SSH Anomalies}
-
-\subsubsection{weekly POP TODO remapped to AVISO TODO geometry}
-POP TODO ocean model SSH-output remapped to AVISO TODO-geometry.
-
-\subsection{The Isoperimetric-Quotient-Method}
-
-\subsubsection{daily POP TODO remapped to AVISO TODO geometry}
-
-\subsubsection{weekly POP TODO SSH Anomalies}
-
-\subsubsection{3-day-timestep POP TODO}
 
 
+\begin{figure}
+	\begin{tabularx}{\textwidth}{|X|X|}
+	\hline
+	time frame &  \displaydate{runsStart} till \displaydate{runsEnd}\\
+	\hline
+	scope & full globe ($80S:80N \;\; 180W:180E$) \\
+	\hline
 
+	\hline
+	AVISO geometry &   $641 x 1440$ true Mercator \\
+	\hline
+	POP   geometry &   $2400 x 3600$ \todoil{lookup term used for krummes grid}\\
+	\hline
+	\end{tabularx}
+	\caption{Fix parameters for all runs.}
+\end{figure}
 
-
+\begin{figure}
+	\begin{tabularx}{\textwidth}{|X||X|X|X|}
+	\hline
+	\textbf{SSH-data} & POP & Aviso  & \PtoA  \\
+	\hline
+	\textbf{method}   & \MI  &  \MII  &    \\
+	\hline
+	\textbf{time-step}   & 7 &  3  &  \\
+	\hline
+	\end{tabularx}
+	\caption{Variable parameters.}
+\end{figure}
