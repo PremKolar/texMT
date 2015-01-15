@@ -7,40 +7,17 @@ The first run is an attempt to reproduce the results from \citet{Chelton2011}, b
 This method will be called \MI.\\
  The second run is equivalent, except that this time all new alternative methods as described in \ref{TODO} are used. This setting will be called \MII. Both \MI and \MII are then fed with 7-day time-step POP data as well.
  To investigate what role time-resolution plays an \MII/3-day-time-step run over POP data was started next. Finally, to further investigate the effects of resolution in space, the POP data was remapped to that of the Aviso data and fed to the \MI method.\\
-  Start and end dates were fix for all runs as the intersection of availability of both data sets (POP and Aviso).
+  Start and end dates were fix for all runs as the intersection of availability of both data sets (see table \ref{tab:fixparams} for details).
 
-\subsection{\MI - 7day - Aviso}
+\input{SUBS/RESULTStables.tex}
+
+\begin{itemize}
+	\item[\MI]
+	TODO 
+	\item[\MII]
+	TODO 
+\end{itemize}
+
+\section{\MI - 7day - Aviso}
 The algorithm used in this section is loosely based on the description of the
 algorithm described by \citep{Chelton2011}.
-
-
-
-\begin{figure}
-	\begin{tabularx}{\textwidth}{|X|X|}
-	\hline
-	time frame &  \displaydate{runsStart} till \displaydate{runsEnd}\\
-	\hline
-	scope & full globe ($80S:80N \;\; 180W:180E$) \\
-	\hline
-	AVISO geometry &   $641 x 1440$ true Mercator \\
-	\hline
-	POP   geometry &   $2400 x 3600$ \\
-	\hline
-	\end{tabularx}
-	\caption{Fix parameters for all runs.}
-\end{figure}
-\todoil{lookup term used for krummes grid}
-
-
-\begin{figure}
-	\begin{tabularx}{\textwidth}{|X||X|X|X|}
-	\hline
-	\textbf{SSH-data} & POP & Aviso  & \PtoA  \\
-	\hline
-	\textbf{method}   & \MI  &  \MII  &    \\
-	\hline
-	\textbf{time-step}   & 7 &  3  &  \\
-	\hline
-	\end{tabularx}
-	\caption{Variable parameters.}
-\end{figure}

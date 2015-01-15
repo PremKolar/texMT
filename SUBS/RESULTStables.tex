@@ -1,0 +1,49 @@
+
+\begin{table} 
+	\begin{tabularx}{\textwidth}{|X|X|}
+	\hline
+	time frame &  \displaydate{runsStart} till \displaydate{runsEnd}\\
+	\hline
+	scope & full globe ($80S:80N \;\; 180W:180E$) \\
+	\hline
+	AVISO geometry &   $641 x 1440$ true Mercator \\
+	\hline
+	POP   geometry &   $2400 x 3600$ \\
+	\hline
+	contour step   &   \contourstep \\
+	\hline
+	\end{tabularx}
+	\begin{tabularx}{\textwidth}{|X|X|}
+	\hline
+	\textbf{thresholds} &  [all SI]  \\
+	\hline
+	max $\sigma/\Lr$ & \threshmaxRadiusOverRossbyL \\
+	\hline
+	min $\Lr$ TODO & \threshminRossbyRadius \\
+	\hline
+	min $\IQ$ & \threshshapeiq \\
+	\hline
+	min data points of an eddy & \threshcornersmin \\
+	\hline
+	max(abs(rossby phase speed)) TODO & \threshphase \\
+	\hline
+	\end{tabularx}	
+	\caption{Fix parameters for all runs.}
+\label{tab:fixparams}
+\end{table}
+\todoil{lookup term used for krummes grid}
+
+
+\begin{table} 
+	\begin{tabularx}{\textwidth}{|X||X|X|X|}
+	\hline
+	\textbf{SSH-data} & POP & Aviso  & \PtoA  \\
+	\hline
+	\textbf{method}   & \MI  &  \MII  &    \\
+	\hline
+	\textbf{time-step}   & 7 &  3  &  \\
+	\hline
+	\end{tabularx}
+	\caption{Variable parameters.}
+\label{tab:varparams}
+\end{table}
