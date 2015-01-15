@@ -1,11 +1,13 @@
+\defcitealias{Chelton2011}{them}
 
 The short time-frame and limited computational resources allowed for only a few complete global runs over the available data.
 It was therefor critical to carefully choose which method/parameters to use in order to maximize the deducible insight from the results.
-For best comparability of the results with each other it was decided to agree on one complete set of parameters as a basis, which would then be altered only at key parameters.
-The first run is an attempt to reproduce the results from \citet{Chelton2011}, setting the algorithm to be the most similar to the algorithm described by \cite{Chelton2011}.
-This method will be called \MI. The SSH-data for this run is of course the Aviso product, just as in \cite{Chelton2011}.
- The second run is equivalent, except that this time all new alternative methods as described in \ref{TODO} are used. This setting will be called \MII. Both \MI and \MII are then run with 7-day time-step POP data as well.
- To investigate what role time-resolution plays an \MII, 3-day-time-step run over POP data was started next. Finally, to further investigate the effects of resolution in space, the POP data was remapped to that of the Aviso data and fed to the \MI method. Start and end dates were fix for all runs as the intersection of availability of both data sets (POP and Aviso).
+For best comparability of the results with each other it was decided to agree on one complete set of parameters as a basis, which would then be altered at key parameters.
+The first run is an attempt to reproduce the results from \citet{Chelton2011}, by setting the algorithm to be the most similar to the algorithm described by \citetalias{Chelton2011}.  The SSH-data for this run is therefor that of the Aviso product.
+This method will be called \MI.\\
+ The second run is equivalent, except that this time all new alternative methods as described in \ref{TODO} are used. This setting will be called \MII. Both \MI and \MII are then fed with 7-day time-step POP data as well.
+ To investigate what role time-resolution plays an \MII/3-day-time-step run over POP data was started next. Finally, to further investigate the effects of resolution in space, the POP data was remapped to that of the Aviso data and fed to the \MI method.\\
+  Start and end dates were fix for all runs as the intersection of availability of both data sets (POP and Aviso).
 
 \subsection{\MI - 7day - Aviso}
 The algorithm used in this section is loosely based on the description of the
