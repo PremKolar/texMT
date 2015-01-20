@@ -1,5 +1,6 @@
 #!/bin/bash
-root=~/documents/texMT/
+#root=~/documents/texMT/
+root=/scratch/uni/ifmto/u300065/texMT/
 file=THESIS
 
 # ==================================
@@ -20,4 +21,4 @@ cd $root
 tex2pdf $file
 #bibtex $file
 #tex2pdf $file
-#tex2pdf $file	
+#tex2pdf $file

@@ -1,5 +1,5 @@
 
-\begin{table} 
+\begin{table}
 	\begin{tabularx}{\textwidth}{|X|X|}
 	\hline
 	time frame &  \displaydate{runsStart} till \displaydate{runsEnd}\\
@@ -27,23 +27,26 @@
 	\hline
 	max(abs(rossby phase speed)) TODO & \threshphase \\
 	\hline
-	\end{tabularx}	
+		max amplitude TODO & \threshamp \\
+	\hline
+	\end{tabularx}
 	\caption{Fix parameters for all runs.}
 \label{tab:fixparams}
 \end{table}
-\todoil{lookup term used for krummes grid}
+TODO lookup term used for krummes grid\\
+TODO check tables for completeness\\
 
 
-\begin{table} 
-	\begin{tabularx}{\textwidth}{|X||X|X|X|}
+\begin{table}
+	\begin{tabularx}{\textwidth}{|X||X|X|}
 	\hline
-	\textbf{SSH-data} & POP & Aviso  & \PtoA  \\
+	 & \MI & \MII   \\
 	\hline
-	\textbf{method}   & \MI  &  \MII  &    \\
+shape threshold & The distance between any pair of points within the connected region must be less than a specified maximum. & The Isoperimetric Quotient must be at least a specified minimum.\\
 	\hline
-	\textbf{time-step}   & 7 &  3  &  \\
+Comparison of old to new eddy & ratio between new and old must lie between $0.25$ and $2.5$ for amplitude and area TODO ref & similar but with $\sqrt{\mathrm{area}/\pi}$ instead of area and the lower threshold as reciproke of the higher and vice versa.   TODO ref \\
 	\hline
 	\end{tabularx}
-	\caption{Variable parameters.}
-\label{tab:varparams}
+	\caption{The two methods \MI and \MII.}
+\label{tab:MIMIIdiffs}
 \end{table}
